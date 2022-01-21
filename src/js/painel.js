@@ -4,19 +4,37 @@ const setaVoltar = document.getElementById('btn-voltar');
 
 let imagemAtual = 0;
 
+function esconderImagens(){
+    imagensPainel.forEach(imagem => {
+        imagem.classList.remove('mostrar')
+    });
+}
+
 setaAvancar.addEventListener('click', function(){
+
+    const totalDeImagens = imagensPainel.length - 1;
+    if(imagemAtual === totalDeImagens){
+        return;
+    }
 
     imagemAtual++;
 
-    // console.log(imagemAtual)
-    // if(imagemAtual > imagensPainel.length){
-    //     console.log("estouro")
-    // }
-    // else{
-    // }
-    imagensPainel.forEach(img => {
-        img.classList.remove('mostrar')
-    });
+    esconderImagens();
+
+    imagensPainel[imagemAtual].classList.add('mostrar');
+
+});
+
+setaVoltar.addEventListener('click', function(){
+
+    if(imagemAtual === 0){
+        return;
+    }
+
+    imagemAtual--;
+
+    esconderImagens();
+
     imagensPainel[imagemAtual].classList.add('mostrar');
 
 });
